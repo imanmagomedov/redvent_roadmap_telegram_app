@@ -46,7 +46,7 @@
 
         .project-stats {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
             padding: 15px;
             background: var(--tg-theme-secondary-bg-color, #f8f9fa);
@@ -315,7 +315,7 @@
         }
 
         .telegram-specific {
-            padding-bottom: 70px;
+            padding-bottom: 20px;
         }
 
         @media (max-width: 480px) {
@@ -328,8 +328,21 @@
             }
 
             .project-stats {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
                 gap: 8px;
+                padding: 12px;
+            }
+
+            .stat-item {
+                padding: 8px 4px;
+            }
+
+            .stat-value {
+                font-size: 0.9rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -342,12 +355,12 @@
 
 <div class="project-stats">
     <div class="stat-item">
-        <div class="stat-value">255 дней</div>
-        <div class="stat-label">Срок</div>
-    </div>
-    <div class="stat-item">
         <div class="stat-value">9 этапов</div>
         <div class="stat-label">Этапов</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-value">255 дней</div>
+        <div class="stat-label">Срок</div>
     </div>
     <div class="stat-item">
         <div class="stat-value">3 платформы</div>
@@ -726,29 +739,31 @@
     // Настраиваем тему
     tg.ready();
 
-    // Функция для отправки данных обратно в чат
-    function sendFeedback() {
-        tg.sendData(JSON.stringify({
-            action: 'schedule_meeting',
-            message: 'Готов согласовать даты встреч для следующих этапов проекта'
-        }));
-    }
-
-    // Показываем главную кнопку
-    tg.MainButton.setText('📅 Согласовать даты встреч');
-    tg.MainButton.onClick(sendFeedback);
-    tg.MainButton.show();
+    // Скрываем главную кнопку
+    tg.MainButton.hide();
 
     // Обработка темной/светлой темы
     if (tg.colorScheme === 'dark') {
         document.body.style.background = 'var(--tg-theme-bg-color, #1a1a1a)';
     }
 
-    // Запрещаем скролл назад
+    // Добавляем тактильную обратную связь при скролле и кликах
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.meeting-card')) {
+            tg.HapticFeedback.selectionChanged();
+        }
+    });
+
+    // Запрещаем кнопку назад
     tg.BackButton.hide();
 
     // Уведомляем о готовности
     tg.HapticFeedback.notificationOccurred('success');
+
+    // Логируем информацию для отладки
+    console.log('Telegram Web App готов');
+    console.log('Версия:', tg.version);
+    console.log('Тема:', tg.colorScheme);
 </script>
 </body>
 </html>
