@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>RoadMap проекта автоматизации</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
             margin: 0;
@@ -12,10 +11,22 @@
             box-sizing: border-box;
         }
 
+        :root {
+            /* Comrades Devs Brand Colors */
+            --cd-primary: #FF6B5A; /* Coral red from logo */
+            --cd-secondary: #4A4FB7; /* Deep blue from logo */
+            --cd-purple: #8B7DD8; /* Purple gradient from template */
+            --cd-dark-navy: #2C3E86; /* Dark navy blue */
+            --cd-light-coral: #FF9A8D; /* Lighter coral */
+            --cd-gradient-primary: linear-gradient(135deg, #FF6B5A 0%, #4A4FB7 100%);
+            --cd-gradient-secondary: linear-gradient(135deg, #8B7DD8 0%, #4A4FB7 100%);
+            --cd-gradient-accent: linear-gradient(135deg, #FF9A8D 0%, #FF6B5A 100%);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.5;
-            color: var(--tg-theme-text-color, #333);
+            color: var(--tg-theme-text-color, #2C3E86);
             background: var(--tg-theme-bg-color, #ffffff);
             padding: 0;
             margin: 0;
@@ -23,115 +34,146 @@
         }
 
         .twa-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px 15px;
+            background: var(--cd-gradient-primary);
+            padding: 25px 15px;
             text-align: center;
             color: white;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(74, 79, 183, 0.2);
         }
 
         .twa-header h1 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             margin-bottom: 8px;
             font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .twa-header .subtitle {
             font-size: 0.9rem;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 500;
         }
 
         .project-stats {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            padding: 15px;
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            gap: 12px;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff5f4 100%);
         }
 
         .stat-item {
             text-align: center;
-            padding: 12px 8px;
+            padding: 16px 12px;
             background: var(--tg-theme-bg-color, white);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(74, 79, 183, 0.08);
+            border: 1px solid rgba(255, 107, 90, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 79, 183, 0.15);
         }
 
         .stat-value {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            color: #667eea;
-            margin-bottom: 4px;
+            background: var(--cd-gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
         }
 
         .stat-label {
             font-size: 0.8rem;
-            color: var(--tg-theme-hint-color, #999);
+            color: var(--cd-secondary);
+            font-weight: 500;
         }
 
         .container {
-            padding: 0 15px 20px;
+            padding: 0 15px 25px;
         }
 
         .phase {
             background: var(--tg-theme-bg-color, white);
-            margin: 15px 0;
-            border-radius: 16px;
+            margin: 20px 0;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            border: 1px solid var(--tg-theme-secondary-bg-color, #f0f0f0);
+            box-shadow: 0 6px 25px rgba(74, 79, 183, 0.1);
+            border: 1px solid rgba(255, 107, 90, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .phase:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(74, 79, 183, 0.15);
         }
 
         .phase-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 16px;
+            background: var(--cd-gradient-primary);
+            padding: 20px;
             color: white;
             position: relative;
         }
 
         .phase-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
             line-height: 1.3;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .phase-period {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            margin-bottom: 4px;
+            font-size: 0.88rem;
+            opacity: 0.95;
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
         .phase-goal {
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.82rem;
+            opacity: 0.9;
+            font-weight: 400;
         }
 
         .phase-duration {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(255,255,255,0.2);
-            padding: 4px 8px;
-            border-radius: 12px;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 15px;
             font-size: 0.75rem;
-            font-weight: 500;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .meetings-container {
-            padding: 16px;
+            padding: 20px;
         }
 
         .meeting-card {
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 12px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff8f7 100%);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
             position: relative;
-            border-left: 4px solid #667eea;
+            border-left: 5px solid var(--cd-primary);
+            box-shadow: 0 3px 10px rgba(255, 107, 90, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .meeting-card:hover {
+            transform: translateX(3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 90, 0.15);
         }
 
         .meeting-card:last-child {
@@ -139,127 +181,147 @@
         }
 
         .meeting-card.completed {
-            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            background: linear-gradient(135deg, #e8f8e8 0%, #f0fff0 100%);
             border-left-color: #28a745;
         }
 
         .meeting-card.completed::after {
             content: '✓';
             position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 24px;
-            height: 24px;
-            background: #28a745;
+            top: 12px;
+            right: 12px;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #28a745, #20c997);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: bold;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
         }
 
         .meeting-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--tg-theme-text-color, #333);
-            margin-bottom: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cd-dark-navy);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .meeting-icon {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 28px;
+            height: 28px;
+            background: var(--cd-gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(255, 107, 90, 0.3);
         }
 
         .meeting-card.completed .meeting-icon {
             background: linear-gradient(135deg, #28a745, #20c997);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
         }
 
         .meeting-details {
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            color: var(--tg-theme-hint-color, #666);
+            font-size: 0.88rem;
+            margin-bottom: 12px;
+            color: var(--cd-secondary);
+            font-weight: 500;
         }
 
         .detail-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .detail-label {
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--cd-dark-navy);
         }
 
         .meeting-goals {
             background: var(--tg-theme-bg-color, white);
-            border-radius: 8px;
-            padding: 10px;
-            margin-top: 8px;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 107, 90, 0.1);
         }
 
         .goals-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--tg-theme-text-color, #333);
-            margin-bottom: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--cd-secondary);
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
 
         .goals-list {
             list-style: none;
-            font-size: 0.8rem;
-            color: var(--tg-theme-hint-color, #555);
+            font-size: 0.82rem;
+            color: var(--cd-dark-navy);
+            font-weight: 500;
         }
 
         .goals-list li {
-            padding: 2px 0 2px 12px;
+            padding: 3px 0 3px 16px;
             position: relative;
+            line-height: 1.4;
         }
 
         .goals-list li::before {
             content: '•';
             position: absolute;
             left: 0;
-            color: #667eea;
+            color: var(--cd-primary);
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .deliverables {
             background: var(--tg-theme-bg-color, white);
-            margin: 20px 15px;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin: 25px 15px;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 6px 25px rgba(74, 79, 183, 0.1);
+            border: 1px solid rgba(255, 107, 90, 0.1);
         }
 
         .deliverables h3 {
-            font-size: 1.2rem;
-            color: var(--tg-theme-text-color, #333);
-            margin-bottom: 16px;
+            font-size: 1.3rem;
+            background: var(--cd-gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
             text-align: center;
+            font-weight: 700;
         }
 
         .deliverable-item {
-            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 3px solid #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff8f7 100%);
+            padding: 16px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--cd-purple);
+            box-shadow: 0 2px 8px rgba(139, 125, 216, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .deliverable-item:hover {
+            transform: translateX(3px);
         }
 
         .deliverable-item:last-child {
@@ -267,24 +329,26 @@
         }
 
         .deliverable-title {
-            font-weight: 600;
-            color: var(--tg-theme-text-color, #333);
-            margin-bottom: 4px;
-            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cd-dark-navy);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
         }
 
         .deliverable-desc {
-            color: var(--tg-theme-hint-color, #666);
-            font-size: 0.8rem;
-            line-height: 1.4;
+            color: var(--cd-secondary);
+            font-size: 0.82rem;
+            line-height: 1.5;
+            font-weight: 500;
         }
 
         .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-weight: 600;
-            color: #333;
+            background: var(--cd-gradient-accent);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .twa-main-button {
@@ -292,58 +356,93 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--tg-theme-button-color, #007acc);
-            color: var(--tg-theme-button-text-color, white);
-            padding: 16px;
+            background: var(--cd-gradient-primary);
+            color: white;
+            padding: 18px;
             text-align: center;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.05rem;
             border: none;
             cursor: pointer;
             z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(74, 79, 183, 0.2);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .status-badge {
             display: inline-block;
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            background: rgba(40, 167, 69, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: rgba(40, 167, 69, 0.15);
             color: #28a745;
-            margin-left: 8px;
+            margin-left: 10px;
+            border: 1px solid rgba(40, 167, 69, 0.2);
         }
 
         .telegram-specific {
-            padding-bottom: 20px;
+            padding-bottom: 25px;
+        }
+
+        /* Comrades Devs specific enhancements */
+        .comrades-brand-accent {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comrades-brand-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--cd-gradient-accent);
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(30px, -30px);
         }
 
         @media (max-width: 480px) {
             .twa-header h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
 
             .phase-title {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
 
             .project-stats {
                 grid-template-columns: 1fr 1fr 1fr;
-                gap: 8px;
-                padding: 12px;
+                gap: 10px;
+                padding: 15px;
             }
 
             .stat-item {
-                padding: 8px 4px;
+                padding: 12px 8px;
             }
 
             .stat-value {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
             .stat-label {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
+        }
+
+        /* Additional brand elements */
+        .phase-header.phase-1 {
+            background: var(--cd-gradient-primary);
+        }
+
+        .phase-header.phase-2 {
+            background: var(--cd-gradient-primary);
+        }
+
+        .phase-header.phase-3 {
+            background: var(--cd-gradient-primary);
         }
     </style>
 </head>
@@ -779,40 +878,167 @@
 </div>
 
 <script>
-    // Инициализация Telegram Web App
-    let tg = window.Telegram.WebApp;
+    // Telegram Web App Manager
+    class TelegramWebAppManager {
+        constructor() {
+            this.tg = null;
+            this.isReady = false;
+            this.isInTelegram = false;
+            this.init();
+        }
 
-    // Расширяем окно на весь экран
-    tg.expand();
+        init() {
+            // Проверяем, запущено ли приложение в Telegram
+            this.isInTelegram = this.checkTelegramEnvironment();
 
-    // Настраиваем тему
-    tg.ready();
+            if (this.isInTelegram) {
+                this.loadTelegramScript();
+            } else {
+                // Если не в Telegram, просто инициализируем fallback режим
+                this.initFallbackMode();
+                console.log('Приложение запущено вне Telegram');
+            }
+        }
 
-    // Скрываем главную кнопку
-    tg.MainButton.hide();
+        checkTelegramEnvironment() {
+            // Проверяем различные признаки Telegram Web App
+            return !!(
+                window.Telegram ||
+                window.TelegramWebviewProxy ||
+                window.external?.notify ||
+                /telegram/i.test(navigator.userAgent) ||
+                window.location.search.includes('tgWebAppData') ||
+                window.location.search.includes('tgWebAppStartParam')
+            );
+        }
 
-    // Обработка темной/светлой темы
-    if (tg.colorScheme === 'dark') {
-        document.body.style.background = 'var(--tg-theme-bg-color, #1a1a1a)';
+        loadTelegramScript() {
+            // Создаем script элемент для загрузки Telegram Web App API
+            const script = document.createElement('script');
+            script.src = 'https://telegram.org/js/telegram-web-app.js';
+            script.async = true;
+
+            script.onload = () => {
+                this.onTelegramScriptLoaded();
+            };
+
+            script.onerror = () => {
+                console.warn('Не удалось загрузить Telegram Web App script');
+                this.initFallbackMode();
+            };
+
+            document.head.appendChild(script);
+        }
+
+        onTelegramScriptLoaded() {
+            // Ждем инициализации Telegram объекта
+            const checkTelegram = () => {
+                if (window.Telegram?.WebApp) {
+                    this.setupTelegramWebApp();
+                } else {
+                    setTimeout(checkTelegram, 50);
+                }
+            };
+            checkTelegram();
+        }
+
+        setupTelegramWebApp() {
+            try {
+                this.tg = window.Telegram.WebApp;
+                this.isReady = true;
+
+                // Настраиваем Telegram Web App
+                this.tg.ready();
+                this.tg.expand();
+
+                // Скрываем ненужные элементы
+                this.tg.MainButton.hide();
+                this.tg.BackButton.hide();
+
+                // Настраиваем тему
+                this.applyTelegramTheme();
+
+                // Добавляем обработчики событий
+                this.setupEventHandlers();
+
+                // Отправляем уведомление о готовности
+                this.tg.HapticFeedback.notificationOccurred('success');
+
+                console.log('Telegram Web App инициализирован');
+                console.log('Версия:', this.tg.version);
+                console.log('Тема:', this.tg.colorScheme);
+
+            } catch (error) {
+                console.error('Ошибка при настройке Telegram Web App:', error);
+                this.initFallbackMode();
+            }
+        }
+
+        applyTelegramTheme() {
+            if (!this.tg) return;
+
+            const root = document.documentElement;
+
+            // Применяем тему Telegram
+            if (this.tg.colorScheme === 'dark') {
+                root.style.setProperty('--tg-theme-bg-color', this.tg.themeParams.bg_color || '#1a1a1a');
+                root.style.setProperty('--tg-theme-text-color', this.tg.themeParams.text_color || '#ffffff');
+                root.style.setProperty('--tg-theme-secondary-bg-color', this.tg.themeParams.secondary_bg_color || '#2a2a2a');
+            } else {
+                root.style.setProperty('--tg-theme-bg-color', this.tg.themeParams.bg_color || '#ffffff');
+                root.style.setProperty('--tg-theme-text-color', this.tg.themeParams.text_color || '#000000');
+                root.style.setProperty('--tg-theme-secondary-bg-color', this.tg.themeParams.secondary_bg_color || '#f5f5f5');
+            }
+        }
+
+        setupEventHandlers() {
+            if (!this.tg) return;
+
+            // Добавляем тактильную обратную связь
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.meeting-card')) {
+                    this.tg.HapticFeedback.selectionChanged();
+                }
+
+                if (e.target.closest('.phase')) {
+                    this.tg.HapticFeedback.impactOccurred('light');
+                }
+            });
+
+            // Обработка изменения темы
+            this.tg.onEvent('themeChanged', () => {
+                this.applyTelegramTheme();
+            });
+
+            // Обработка изменения viewport
+            this.tg.onEvent('viewportChanged', () => {
+                // Можно добавить логику для адаптации под изменение размера
+                console.log('Viewport изменен');
+            });
+        }
+
+        initFallbackMode() {
+            // Режим работы без Telegram Web App API
+            console.log('Работаем в fallback режиме');
+
+            // Добавляем базовые обработчики для улучшения UX
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.meeting-card')) {
+                    // Простая анимация вместо тактильной обратной связи
+                    const card = e.target.closest('.meeting-card');
+                    card.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 100);
+                }
+            });
+        }
     }
 
-    // Добавляем тактильную обратную связь при скролле и кликах
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.meeting-card')) {
-            tg.HapticFeedback.selectionChanged();
-        }
+    // Инициализируем Telegram Web App Manager при загрузке DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        window.twaManager = new TelegramWebAppManager();
     });
-
-    // Запрещаем кнопку назад
-    tg.BackButton.hide();
-
-    // Уведомляем о готовности
-    tg.HapticFeedback.notificationOccurred('success');
-
-    // Логируем информацию для отладки
-    console.log('Telegram Web App готов');
-    console.log('Версия:', tg.version);
-    console.log('Тема:', tg.colorScheme);
 </script>
 </body>
 </html>
